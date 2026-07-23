@@ -139,6 +139,65 @@
     .hero h1, .hero p, .hero .badges, .hero-cta, .cta-strip { animation: none; }
   }
 
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 20px;
+  }
+  .modal-backdrop.open {
+    display: flex;
+  }
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    max-width: 860px;
+    width: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+    padding: 22px;
+  }
+  .modal-close {
+    float: right;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .modal-img {
+    border-radius: 16px;
+    width: 100%;
+    max-height: 360px;
+    object-fit: cover;
+    margin-bottom: 14px;
+  }
+  .modal-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .modal-price {
+    color: var(--accent-bright);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .modal-desc {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .product {
+    cursor: pointer;
+  }
+
   section { padding:90px 0; }
   .section-title { font-size:clamp(24px,3vw,32px); margin-bottom:8px; color:var(--text); }
   .section-sub { color:var(--muted); margin-bottom:44px; font-size:16px; max-width:640px; }
@@ -257,7 +316,7 @@
     </div>
     <div class="products">
 
-      <article class="product">
+      <article class="product" data-product="Беседка «Лагер»" data-price="от 89 000 ₽" data-desc="Шестигранная беседка из влагостойкой берёзовой фанеры с усиленным каркасом. Подходит для дачи и загородного дома.">
         <img class="product-img" alt="Беседка «Лагер»" src="/images/dome-hero.jpg">
         <div class="product-body">
           <div class="product-title">Беседка «Лагер»</div>
@@ -272,7 +331,7 @@
         </div>
       </article>
 
-      <article class="product">
+      <article class="product" data-product="Обеденный набор «Пленер»" data-price="от 42 000 ₽" data-desc="Стол + 4 стула из фанеры с защитной пропиткой. Компактный и удобный вариант для террасы.">
         <img class="product-img" alt="Обеденный набор «Пленер»" src="/images/dome-hero.jpg">
         <div class="product-body">
           <div class="product-title">Обеденный набор «Пленер»</div>
@@ -287,7 +346,7 @@
         </div>
       </article>
 
-      <article class="product">
+      <article class="product" data-product="Шезлонг «Солнце»" data-price="от 12 500 ₽" data-desc="Эргономичный лежак из многослойной фанеры с регулируемой спинкой и влагостойкой отделкой.">
         <img class="product-img" alt="Шезлонг «Солнце»" src="/images/dome-hero.jpg">
         <div class="product-body">
           <div class="product-title">Шезлонг «Солнце»</div>
@@ -302,7 +361,7 @@
         </div>
       </article>
 
-      <article class="product">
+      <article class="product" data-product="Качели «Каскад»" data-price="от 27 000 ₽" data-desc="Персональный проект из берёзовой фанеры с защитой от солнца и дождя. Устанавливаем за 1 день.">
         <img class="product-img" alt="Качели «Каскад»" src="/images/dome-hero.jpg">
         <div class="product-body">
           <div class="product-title">Качели «Каскад»</div>
@@ -317,7 +376,7 @@
         </div>
       </article>
 
-      <article class="product">
+      <article class="product" data-product="Стол для кафе «Плац»" data-price="от 19 900 ₽" data-desc="Устойчивая фанерная столешница для улицы и террасы. Возможны металлические ножки по запросу.">
         <img class="product-img" alt="Стол для кафе «Плац»" src="/images/dome-hero.jpg">
         <div class="product-body">
           <div class="product-title">Стол для кафе «Плац»</div>
@@ -332,7 +391,7 @@
         </div>
       </article>
 
-      <article class="product">
+      <article class="product" data-product="Набор для веранды «Терра»" data-price="от 34 500 ₽" data-desc="Стол + 2 скамьи для небольшого сада или загородного дома. Компактно и лаконично.">
         <img class="product-img" alt="Набор для веранды «Терра»" src="/images/dome-hero.jpg">
         <div class="product-body">
           <div class="product-title">Набор для веранды «Терра»</div>
@@ -533,5 +592,67 @@
     }
   })();
 </script>
+<script>
+  (function() {
+    var backdrop = document.getElementById('productModal');
+    var modal = document.getElementById('productModalDialog');
+    var modalImg = document.getElementById('modalImg');
+    var modalTitle = document.getElementById('modalTitle');
+    var modalPrice = document.getElementById('modalPrice');
+    var modalDesc = document.getElementById('modalDesc');
+    var modalProduct = document.getElementById('modalProduct');
+    var closeBtn = document.getElementById('modalClose');
+
+    if (!backdrop || !modal) return;
+
+    var openModal = function(product, price, desc) {
+      if (modalTitle) modalTitle.textContent = product || '';
+      if (modalPrice) modalPrice.textContent = price || '';
+      if (modalDesc) modalDesc.textContent = desc || '';
+      if (modalProduct) modalProduct.value = product || '';
+      if (modalImg) modalImg.src = '/images/dome-hero.jpg';
+      backdrop.classList.add('open');
+    };
+
+    var closeModal = function() {
+      backdrop.classList.remove('open');
+    };
+
+    document.querySelectorAll('.product').forEach(function(card) {
+      card.addEventListener('click', function() {
+        openModal(
+          card.getAttribute('data-product') || '',
+          card.getAttribute('data-price') || '',
+          card.getAttribute('data-desc') || ''
+        );
+      });
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', function(e) {
+      if (e.target === backdrop) closeModal();
+    });
+  })();
+</script>
+<div class="modal-backdrop" id="productModal" role="dialog" aria-modal="true" aria-label="Карточка товара">
+  <div class="modal" id="productModalDialog">
+    <button class="modal-close" id="modalClose" aria-label="Закрыть">✕</button>
+    <img class="modal-img" id="modalImg" src="/images/dome-hero.jpg" alt="Фото товара">
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-price" id="modalPrice"></div>
+    <div class="modal-desc" id="modalDesc"></div>
+    <form class="form" onsubmit="event.preventDefault(); document.getElementById('modalSuccess').style.display='block'; this.reset();">
+      <input type="hidden" id="modalProduct" name="product">
+      <div class="row">
+        <input type="text" name="name" placeholder="Имя" required>
+        <input type="tel" name="phone" placeholder="Телефон" required>
+      </div>
+      <input type="text" name="city" placeholder="Город / адрес">
+      <input type="text" name="size" placeholder="Размер и особенности">
+      <button class="btn" type="submit">Отправить заявку</button>
+      <div class="form-success" id="modalSuccess" style="display:none; color:var(--success); font-weight:600;">Заявка отправлена.</div>
+    </form>
+  </div>
+</div>
 </body>
 </html>
