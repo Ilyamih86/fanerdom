@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Краснодар — Уличная мебель и беседки из фанеры</title>
+<style>
+  :root {
+    --bg: #1b1712;
+    --surface: #241f19;
+    --text: #f3ede6;
+    --muted: #bfae99;
+    --accent: #d4a96a;
+    --accent-dark: #b3864a;
+    --border: rgba(212,169,106,0.18);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { font-family: 'Segoe UI', Roboto, system-ui, sans-serif; background:var(--bg); color:var(--text); }
+  a { color:var(--accent); text-decoration:none; }
+  img { max-width:100%; display:block; }
+  .container { max-width:1180px; margin:0 auto; padding:0 20px; }
+
+  header { position:sticky; top:0; backdrop-filter:blur(10px); background:rgba(27,23,18,0.8); border-bottom:1px solid var(--border); z-index:10; }
+  .nav { display:flex; justify-content:space-between; align-items:center; padding:16px 0; }
+  .logo { font-weight:700; letter-spacing:0.5px; color:var(--accent); font-size:18px; }
+  .nav a { color:var(--muted); font-size:14px; margin-left:20px; }
+  .nav a:hover { color:var(--text); }
+
+  .hero { position:relative; padding:100px 0 80px; text-align:center; }
+  .hero h1 { font-size:clamp(32px,5vw,56px); line-height:1.15; color:var(--text); }
+  .hero p { margin-top:16px; color:var(--muted); font-size:18px; max-width:640px; margin-left:auto; margin-right:auto; }
+  .hero .badge { display:inline-block; background:var(--surface); border:1px solid var(--border); color:var(--accent); padding:8px 14px; border-radius:999px; font-size:13px; margin-top:24px; }
+  .hero-img { margin-top:40px; border-radius:18px; overflow:hidden; border:1px solid var(--border); }
+
+  section { padding:80px 0; }
+  .section-title { font-size:28px; margin-bottom:10px; }
+  .section-sub { color:var(--muted); margin-bottom:40px; }
+
+  .products { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px; }
+  .product { background:var(--surface); border:1px solid var(--border); border-radius:16px; overflow:hidden; display:flex; flex-direction:column; }
+  .product-img { width:100%; height:220px; object-fit:cover; background:#2a241d; }
+  .product-body { padding:18px; flex:1; display:flex; flex-direction:column; }
+  .product-title { font-size:16px; font-weight:600; }
+  .product-desc { color:var(--muted); font-size:13px; margin-top:8px; flex:1; }
+  .product-footer { margin-top:16px; display:flex; justify-content:space-between; align-items:center; }
+  .price { color:var(--accent); font-weight:700; font-size:16px; }
+  .btn { background:var(--accent); color:#1b1712; padding:10px 16px; border-radius:12px; font-weight:600; font-size:13px; border:none; cursor:pointer; }
+  .btn:hover { background:var(--accent-dark); }
+
+  .about { background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+  .about-img { border-radius:16px; border:1px solid var(--border); }
+  .features { margin-top:20px; display:grid; gap:14px; }
+  .feature { display:flex; gap:12px; align-items:flex-start; }
+  .feature .dot { width:10px; height:10px; border-radius:50%; background:var(--accent); margin-top:6px; }
+
+  .delivery-blocks { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+  .block { background:var(--surface); border:1px solid var(--border); padding:22px; border-radius:16px; }
+
+  .order { text-align:center; }
+  .form { max-width:520px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }
+  .form input, .form textarea { width:100%; background:var(--surface); border:1px solid var(--border); color:var(--text); padding:14px; border-radius:12px; font-size:14px; }
+  .form textarea { min-height:100px; resize:vertical; }
+  .form .btn { align-self:flex-start; }
+
+  footer { border-top:1px solid var(--border); padding:30px 0; color:var(--muted); font-size:13px; text-align:center; }
+
+  @media (max-width:720px){ .about-grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">FanerDom · Краснодар</div>
+    <nav>
+      <a href="#catalog">Каталог</a>
+      <a href="#about">О нас</a>
+      <a href="#delivery">Доставка</a>
+      <a href="#order">Заказать</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>Уличная мебель и беседки<br>из фанеры для Краснодара</h1>
+    <p>Современные формы, проверенные материалы, доставка и сборка по Краснодару и Краснодарскому краю.</p>
+    <div class="badge">Своё производство · Гарантия 12 месяцев</div>
+    <div class="hero-img">
+      <img alt="Беседка из фанеры в саду" src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80">
+    </div>
+  </div>
+</section>
+
+<section id="catalog">
+  <div class="container">
+    <div class="section-title">Популярные модели</div>
+    <div class="section-sub">Выбирайте размер и отделку</div>
+    <div class="products">
+
+      <article class="product">
+        <img class="product-img" alt="Беседка «Лагер»" src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=800&q=80">
+        <div class="product-body">
+          <div class="product-title">Беседка «Лагер»</div>
+          <div class="product-desc">Классическая шестигранная беседка из birch plywood. Идеальна для дачи или backyard в Краснодаре.</div>
+          <div class="product-footer">
+            <div class="price">от 28 900 ₽</div>
+            <button class="btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Заказать</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product">
+        <img class="product-img" alt="Обеденный набор «Пленер»" src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=800&q=80">
+        <div class="product-body">
+          <div class="product-title">Обеденный набор «Пленер»</div>
+          <div class="product-desc">Стол + 4 стула из фанеры с защитной пропиткой. Для террасы или крыши кафе.</div>
+          <div class="product-footer">
+            <div class="price">от 18 400 ₽</div>
+            <button class="btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Заказать</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product">
+        <img class="product-img" alt="Шезлонг «Солнце»" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80">
+        <div class="product-body">
+          <div class="product-title">Шезлонг «Солнце»</div>
+          <div class="product-desc">Эргономичный лежак из многослойной фанеры. Влагостойкая отделка.</div>
+          <div class="product-footer">
+            <div class="price">от 7 200 ₽</div>
+            <button class="btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Заказать</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product">
+        <img class="product-img" alt="Качели «Каскад»" src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=800&q=80">
+        <div class="product-body">
+          <div class="product-title">Качели «Каскад»</div>
+          <div class="product-desc">Персональный проект из берёзовой фанееры, защищён от солнца и дождя.</div>
+          <div class="product-footer">
+            <div class="price">от 15 600 ₽</div>
+            <button class="btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Заказать</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="container about-grid">
+    <div>
+      <img class="about-img" alt="Производство фанеры" src="https://images.unsplash.com/photo-1600566753086-00f18f6b0030?auto=format&fit=crop&w=900&q=80">
+    </div>
+    <div>
+      <div class="section-title">Почему фанера</div>
+      <div class="section-sub">Для Краснодара это особенно удачно</div>
+      <div class="features">
+        <div class="feature"><div class="dot"></div><div>Выдерживает влагу и солнце при правильной обработке</div></div>
+        <div class="feature"><div class="dot"></div><div>Лёгкая, её удобно возить по краю</div></div>
+        <div class="feature"><div class="dot"></div><div>Современный минималистичный вид, который хорошо смотрится в саду</div></div>
+        <div class="feature"><div class="dot"></div><div>Изделия можно красить, лакировать или оставлять натуральными</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="delivery">
+  <div class="container">
+    <div class="section-title">Доставка по Краснодару и краю</div>
+    <div class="section-sub">Берём на себя не только производство, но и логистику</div>
+    <div class="delivery-blocks">
+      <div class="block">
+        <div style="color:var(--accent); font-weight:700;">По городу</div>
+        <div style="color:var(--muted); font-size:13px; margin-top:8px;">Доставка и сборка в течение 1–2 дней. Выезд мастера для замеров бесплатно.</div>
+      </div>
+      <div class="block">
+        <div style="color:var(--accent); font-weight:700;">По краю</div>
+        <div style="color:var(--muted); font-size:13px; margin-top:8px;">Отправляем сборные наборы в Сочи, Адлер, Анапу, Горячий Ключ и другие города.</div>
+      </div>
+      <div class="block">
+        <div style="color:var(--accent); font-weight:700;">Самовывоз</div>
+        <div style="color:var(--muted); font-size:13px; margin-top:8px;">Забирайте со склада в Краснодаре в удобное время.</div>
+      </div>
+      <div class="block">
+        <div style="color:var(--accent); font-weight:700;">Гарантия</div>
+        <div style="color:var(--muted); font-size:13px; margin-top:8px;">12 месяцев на конструкцию и защитное покрытие.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="order" class="order">
+  <div class="container">
+    <div class="section-title">Оставить заявку</div>
+    <div class="section-sub">Расскажите, что хотите — мы перезвоним и предложим лучшее решение</div>
+    <form class="form" onsubmit="event.preventDefault(); alert('Спасибо! Это демо-форма. Подключи отправку в Google Sheets или Telegram бота.');">
+      <input type="text" placeholder="Имя" required>
+      <input type="tel" placeholder="Телефон" required>
+      <textarea placeholder="Какая модель интересует? Размер, отделка, адрес"></textarea>
+      <button class="btn" type="submit">Отправить заявку</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container">FanerDom · Краснодар · уличная мебель и беседки из фанеры · Пример готового магазина</div>
+</footer>
+
+</body>
+</html>
