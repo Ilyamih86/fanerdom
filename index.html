@@ -194,8 +194,18 @@
     line-height: 1.5;
     margin-bottom: 16px;
   }
-  .product {
+  .product-link {
+    display: block;
     cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+  }
+  .product-link .btn {
+    pointer-events: none;
+  }
+  .product-link:hover .product {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.22);
   }
 
   section { padding:90px 0; }
