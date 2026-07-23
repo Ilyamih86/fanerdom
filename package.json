@@ -1,0 +1,24 @@
+{
+  "name": "krasnodar-plywood-shop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilyamih1986/krasnodar-plywood-shop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ilyamih1986/krasnodar-plywood-shop/issues"
+  },
+  "homepage": "https://github.com/ilyamih1986/krasnodar-plywood-shop#readme",
+  "devDependencies": {
+    "vercel": "^56.5.0"
+  }
+}
