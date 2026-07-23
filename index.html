@@ -628,21 +628,27 @@
       backdrop.classList.remove('open');
     };
 
-    document.querySelectorAll('.product').forEach(function(card) {
-      card.addEventListener('click', function(e) {
-        if (e.target.closest('a, button')) return;
-        openModal(
-          card.getAttribute('data-product') || '',
-          card.getAttribute('data-price') || '',
-          card.getAttribute('data-desc') || ''
-        );
-      });
-    });
+    var grid = document.querySelector('.products');
+    var closeHandler = function(e) {
+      if (!backdrop.classList.contains('open')) return;
+      if (e.target === backdrop) closeModal();
+    };
 
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    backdrop.addEventListener('click', function(e) {
-      if (e.target === backdrop) closeModal();
-    });
+    backdrop.addEventListener('click', closeHandler);
+
+    if (grid) {
+      grid.addEventListener('pointerdown', function(e) {
+        var card = e.target.closest('.product');
+        if (!card) return;
+        if (e.target.closest('a, button')) return;
+        if (!card.hasAttribute('data-open')) return;
+        e.preventDefault();
+        var raw = card.getAttribute('data-open') || '';
+        var parts = raw.split('|');
+        openModal(parts[0] || '', parts[1] || '', parts[2] || '');
+      });
+    }
   })();
 </script>
 <div class="modal-backdrop" id="productModal" role="dialog" aria-modal="true" aria-label="Карточка товара">
