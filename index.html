@@ -631,6 +631,17 @@
       });
     });
 
+    document.querySelectorAll('.product').forEach(function(card) {
+      card.addEventListener('click', function(e) {
+        if (['A','BUTTON','INPUT','SELECT','TEXTAREA'].indexOf((e.target.tagName || '').toUpperCase()) !== -1) return;
+        openModal(
+          card.getAttribute('data-product') || '',
+          card.getAttribute('data-price') || '',
+          card.getAttribute('data-desc') || ''
+        );
+      });
+    });
+
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
     backdrop.addEventListener('click', function(e) {
       if (e.target === backdrop) closeModal();
